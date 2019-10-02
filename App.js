@@ -16,98 +16,63 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import CodeInput from 'react-native-confirmation-code-field';
 
 const App: () => React$Node = () => {
+  const phoneNumber = '+32 2 400 44 55';
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.mainContent}>
+              <Text style={styles.descriptionText}>
+                Enter the 6 digit code sent to you at {phoneNumber}
               </Text>
+              <View style={styles.form}>
+                <CodeInput
+                  codeLength={6}
+                  onFulfill={code => this.setState({ code })}
+                  cellBorderWidth={3}
+                  size={28}
+                  space={16}
+                  variant="border-b"
+                />
+              </View>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    backgroundColor: '#174FA0',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    paddingBottom: 50,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  content: {
+    flex: 1,
+    flexDirection: 'column',
+    margin: 30,
+    marginTop: 80,
+    justifyContent: 'space-between',
   },
-  body: {
-    backgroundColor: Colors.white,
+  mainContent: {
+    flex: 1,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  descriptionText: {
+    alignSelf: 'center',
+    color: '#FFFFFF',
+    fontSize: 16,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  form: {
+    marginTop: 20,
   },
 });
 
