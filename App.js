@@ -33,7 +33,7 @@ const App: () => React$Node = () => {
               <View style={styles.form}>
                 <CodeInput
                   codeLength={6}
-                  onFulfill={code => this.setState({ code })}
+                  onFulfill={code => {}}
                   cellBorderWidth={3}
                   size={28}
                   space={16}
